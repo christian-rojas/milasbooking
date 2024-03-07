@@ -43,16 +43,22 @@
       </div>
     </div>
   </div>
+  <Welcome />
   <Section />
+  <Footer />
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
 import Section from "./components/Section.vue";
+import Welcome from "./components/Welcome.vue";
+import Footer from "./components/Footer.vue";
 export default {
   components: {
     Navbar,
     Section,
+    Welcome,
+    Footer,
   },
 };
 </script>
