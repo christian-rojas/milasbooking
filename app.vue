@@ -34,17 +34,21 @@
     <img src="./assets/banner_milasbooking.png" class="card-img-top" alt="Your Image" />
     <div class="card-body">
       <div class="d-flex justify-content-center">
-        <button
+        <!-- <button
           class="btn btn-primary mb-5"
           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/milasvet-2024/30min'});return false;"
         >
           Reserva tu hora
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
+  <!-- <MercadoPago /> -->
   <Welcome />
-  <Section />
+  <Certs />
+  <!-- <Section /> -->
+  <Services />
+  <Booking />
   <Footer />
 </template>
 
@@ -53,12 +57,20 @@ import Navbar from "./components/Navbar.vue";
 import Section from "./components/Section.vue";
 import Welcome from "./components/Welcome.vue";
 import Footer from "./components/Footer.vue";
+import Certs from "./components/Certs.vue";
+import MercadoPago from "./components/MercadoPago.vue";
+import Booking from "./components/Booking.vue";
+import Services from "./components/Services.vue";
 export default {
   components: {
     Navbar,
     Section,
     Welcome,
     Footer,
+    Certs,
+    MercadoPago,
+    Booking,
+    Services,
   },
 };
 </script>

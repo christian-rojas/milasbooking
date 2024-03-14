@@ -10,7 +10,7 @@
             xmlns="http://www.w3.org/1999/xhtml"
             style="display: flex; justify-content: center; align-items: center; height: 100%"
           >
-            <h1 style="text-align: center">Servicios</h1>
+            <h1 style="text-align: center; font-size: 50px">Servicios</h1>
           </div>
         </foreignObject>
       </svg>
