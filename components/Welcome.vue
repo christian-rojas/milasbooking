@@ -1,12 +1,18 @@
 <template>
   <div class="container">
     <div class="card p-3 mt-5 bg-body-tertiary">
-      <h3 class="text-center">bienvenido a milasvet</h3>
+      <h3 class="text-center">Bienvenido a milasvet</h3>
       <p>
         Sabemos lo importante que son tus mascotas para ti, por eso nos comprometemos a proporcionarles el cuidado y la
-        atención que se merecen en todo momento. Ya sea que necesites consejos sobre alimentación, atención médica o
-        simplemente quieras asegurarte de que están en su mejor estado de salud, estamos aquí para ayudarte.
+        atención que se merecen en todo momento. ¡Estamos aquí para ayudarte!
       </p>
+      <h4 class="text-center">Beneficios de la telemedicina</h4>
+      <ul class="list-unstyled justify-content-start">
+        <li>Comodidad y accesibilidad.</li>
+        <li>Ahorro de tiempo y dinero en traslados.</li>
+        <li>Atención oportuna y personalizada.</li>
+        <li>Seguimiento continuo de tu salud.</li>
+      </ul>
     </div>
   </div>
 </template>
