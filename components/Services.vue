@@ -65,8 +65,8 @@
               style="font-size: 35px; margin-left: 15px; color: #d44a4a; display: block; margin: auto; padding: 20px"
             />
             <p>
-              Consultas que pueden requerir tratamiento, resolucion quirúrgica procedimientos u otros. tratamiento y
-              solicitud de examenes complementarios
+              En las consultas se solicitarán examenes complementarios, se instaurará tratamientos y en algunos casos
+              hay patologias que requieren resolución quirúrgica, procedimientos u otros.
             </p>
             <button class="btn btn-primary d-block m-auto">Reservar</button>
           </div>
@@ -157,6 +157,7 @@ export default {
             },
             onSubmit: async ({ selectedPaymentMethod, formData }) => {
               try {
+                let morris = null;
                 await fetch("http://localhost:4000/payment", {
                   method: "POST",
                   headers: {
@@ -166,38 +167,38 @@ export default {
                 })
                   .then((response) => response.json())
                   .then((res) => {
-                    console.log(res);
+                    morris = res;
                   });
+
+                const renderStatusScreenBrick = async (bricksBuilder) => {
+                  const settings = {
+                    initialization: {
+                      paymentId: morris.id, // id de pago para mostrar
+                    },
+                    callbacks: {
+                      onReady: () => {
+                        window.paymentBrickController.unmount();
+                      },
+                      onError: (error) => {
+                        // callback llamado solicitada para todos los casos de error de Brick
+                        console.error(error);
+                      },
+                    },
+                  };
+                  window.statusScreenBrickController = await bricksBuilder.create(
+                    "statusScreen",
+                    "statusScreenBrick_container",
+                    settings
+                  );
+                  setTimeout(() => {
+                    document.getElementById("statusScreenBrick_container").style.display = "none";
+                    Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
+                  }, 6000);
+                };
+                renderStatusScreenBrick(bricksBuilder);
               } catch (error) {
                 console.log(error);
               }
-
-              const renderStatusScreenBrick = async (bricksBuilder) => {
-                const settings = {
-                  initialization: {
-                    paymentId: "1317414675", // id de pago para mostrar
-                  },
-                  callbacks: {
-                    onReady: () => {
-                      window.paymentBrickController.unmount();
-                    },
-                    onError: (error) => {
-                      // callback llamado solicitada para todos los casos de error de Brick
-                      console.error(error);
-                    },
-                  },
-                };
-                window.statusScreenBrickController = await bricksBuilder.create(
-                  "statusScreen",
-                  "statusScreenBrick_container",
-                  settings
-                );
-                setTimeout(() => {
-                  document.getElementById("statusScreenBrick_container").style.display = "none";
-                  Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
-                }, 6000);
-              };
-              renderStatusScreenBrick(bricksBuilder);
             },
           },
         };
