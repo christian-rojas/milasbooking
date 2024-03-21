@@ -95,12 +95,10 @@
             ></button>
           </div>
           <div class="modal-body">
+            <p>nada para mostrar</p>
             <MercadoPagoComponent />
           </div>
-          <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -108,20 +106,24 @@
 </template>
 <script>
 import MercadoPagoComponent from "./MercadoPagoComponent.vue";
-let mortis = null;
+let tempWindows = null;
 export default {
   components: {
     MercadoPagoComponent,
   },
   methods: {
     async click(type) {
+      if (sessionStorage.getItem("purchased")) {
+        Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
+        return;
+      }
       const config = useRuntimeConfig();
       const mp = new MercadoPago(config.public.meli, { locale: "es-CL" });
       const bricksBuilder = mp.bricks();
       const renderPaymentBrick = async (bricksBuilder) => {
         const settings = {
           initialization: {
-            amount: 10000,
+            amount: 100,
             // preferenceId: "<PREFERENCE_ID>",
             payer: {
               firstName: "",
@@ -157,8 +159,8 @@ export default {
             },
             onSubmit: async ({ selectedPaymentMethod, formData }) => {
               try {
-                let morris = null;
-                await fetch("http://localhost:4000/payment", {
+                let paymentResponse = null;
+                await fetch("https://us-central1-vetsly.cloudfunctions.net/milasbooking", {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
@@ -167,48 +169,52 @@ export default {
                 })
                   .then((response) => response.json())
                   .then((res) => {
-                    morris = res;
+                    paymentResponse = res;
+                    console.log("morris", paymentResponse);
+                    if (paymentResponse.status == "approved") {
+                      sessionStorage.setItem("purchased", true);
+                    }
+                    this.renderStatusScreenBrick(bricksBuilder, paymentResponse);
                   });
-
-                const renderStatusScreenBrick = async (bricksBuilder) => {
-                  const settings = {
-                    initialization: {
-                      paymentId: morris.id, // id de pago para mostrar
-                    },
-                    callbacks: {
-                      onReady: () => {
-                        window.paymentBrickController.unmount();
-                      },
-                      onError: (error) => {
-                        // callback llamado solicitada para todos los casos de error de Brick
-                        console.error(error);
-                      },
-                    },
-                  };
-                  window.statusScreenBrickController = await bricksBuilder.create(
-                    "statusScreen",
-                    "statusScreenBrick_container",
-                    settings
-                  );
-                  setTimeout(() => {
-                    document.getElementById("statusScreenBrick_container").style.display = "none";
-                    Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
-                  }, 6000);
-                };
-                renderStatusScreenBrick(bricksBuilder);
+                // renderStatusScreenBrick(bricksBuilder);
               } catch (error) {
                 console.log(error);
               }
             },
           },
         };
-        mortis = window;
+        tempWindows = window;
         window.paymentBrickController = await bricksBuilder.create("payment", "paymentBrick_container", settings);
       };
       renderPaymentBrick(bricksBuilder);
     },
     async close() {
-      mortis.paymentBrickController.unmount();
+      tempWindows.paymentBrickController.unmount();
+    },
+    async renderStatusScreenBrick(bricksBuilder, payment) {
+      const settings = {
+        initialization: {
+          paymentId: payment.id,
+        },
+        callbacks: {
+          onReady: () => {
+            window.paymentBrickController.unmount();
+          },
+          onError: (error) => {
+            // callback llamado solicitada para todos los casos de error de Brick
+            console.error(error);
+          },
+        },
+      };
+      window.statusScreenBrickController = await bricksBuilder.create(
+        "statusScreen",
+        "statusScreenBrick_container",
+        settings
+      );
+      setTimeout(() => {
+        document.getElementById("statusScreenBrick_container").style.display = "none";
+        Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
+      }, 6000);
     },
   },
 };
