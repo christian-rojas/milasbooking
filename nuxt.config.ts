@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/node_modules/bootstrap/dist/css/bootstrap.min.css", "@fortawesome/fontawesome-svg-core/styles.css"],
-  // plugins: [{ src: "~/plugins/mercadopago.js", mode: "client" }],
   routeRules: {
     "/": { prerender: true },
     "/*": { cors: true },
@@ -33,11 +32,4 @@ export default defineNuxtConfig({
   },
 
   // buildModules: ["@nuxtjs/fontawesome"],
-
-  // fontawesome: {
-  //   icons: {
-  //     solid: true,
-  //     brands: true,
-  //   },
-  // },
 });

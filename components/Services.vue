@@ -2,7 +2,10 @@
   <div class="container mb-5" id="services">
     <h5 class="text-center">Selecciona el tipo de servicio que deseas agendar</h5>
     <p class="text-muted d-flex justify-content-start">
-      **Se solicitará completar una ficha con los antecedentes de su mascotas
+      Se solicitará completar una ficha con los antecedentes de su mascotas
+    </p>
+    <p class="text-muted d-flex justify-content-start">
+      Recuerde que es un servicio de telemedicina por lo tanto que no se realizaran vacunas ni antiparsitarios
     </p>
     <div class="row">
       <div class="col-md-12">
@@ -76,7 +79,13 @@
               </button>
             </div>
             <div class="text-center">
-              <a v-show="!isBooked" class="btn btn-primary" href="https://christianici17.youcanbook.me">Agendar</a>
+              <a
+                v-show="!isBooked"
+                class="btn btn-primary"
+                @click="setup('consulta')"
+                href="https://milasvet.youcanbook.me"
+                >Agendar</a
+              >
             </div>
           </div>
         </div>
@@ -107,7 +116,13 @@
               </button>
             </div>
             <div class="text-center">
-              <a v-show="!isBooked" class="btn btn-primary" href="https://christianici17.youcanbook.me">Agendar</a>
+              <a
+                v-show="!isBooked"
+                class="btn btn-primary"
+                @click="setup('gastro')"
+                href="https://milasvet.youcanbook.me"
+                >Agendar</a
+              >
             </div>
           </div>
         </div>
@@ -120,7 +135,13 @@
               :icon="['fas', 'bone']"
               style="font-size: 35px; margin-left: 15px; color: #d44a4a; display: block; margin: auto; padding: 20px"
             />
-            <p>El manejo de heridas</p>
+            <p>
+              En esta consulta se necesitara fotos de la lesiones y se abarcara el tratamiento adecuado para su
+              cicatrizacion optima en la cual se entregara asesoria por ejemplo: manejo quirurjico primario y/o manejos
+              con apositos adecuados dependiendo del tipo de herida y su condicion. Eventualmente se gestionara en caso
+              de ser necesario derivaciones directo a pabellon y/o personas que puedan ir a realizar los vendajes en
+              casa o entregar asesoria para que ustedes como tutores puedan realizar los cambios.
+            </p>
             <div class="text-center">
               <button
                 type="button"
@@ -135,7 +156,13 @@
               </button>
             </div>
             <div class="text-center">
-              <a v-show="!isBooked" class="btn btn-primary" href="https://christianici17.youcanbook.me">Agendar</a>
+              <a
+                v-show="!isBooked"
+                @click="setup('heridas')"
+                class="btn btn-primary"
+                href="https://milasvet.youcanbook.me"
+                >Agendar</a
+              >
             </div>
           </div>
         </div>
@@ -147,7 +174,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Confirma tu reserva</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Confirma tu reserva: ${{ totalAmount }}</h5>
             <button
               type="button"
               class="btn-close"
@@ -157,7 +184,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <MercadoPagoComponent />
+            <div v-show="isPayed">
+              <p>Por favor completa el siguiente formulario para conocer mas a tu mascota y preparas nuestra reunion</p>
+              <a href="https://forms.gle/qVXXeehKk9o2P3iN8">formulario de consulta</a>
+            </div>
+            <MercadoPagoComponent v-show="!isPayed" />
           </div>
           <div class="modal-footer"></div>
         </div>
@@ -173,6 +204,13 @@ export default {
   data() {
     return {
       isBooked: false,
+      isPayed: false,
+      services: {
+        consulta: 15000,
+        gastro: 25000,
+        heridas: 15000,
+      },
+      totalAmount: 15000,
     };
   },
   components: {
@@ -188,26 +226,26 @@ export default {
     }
   },
   methods: {
-    async click(type) {
-      //Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
-
-      // if (sessionStorage.getItem("purchased")) {
-      //   Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
-      //   return;
-      // }
+    async click() {
+      const isPayedCheck = sessionStorage.getItem("isPayed");
+      if (isPayedCheck) {
+        this.isPayed = true;
+      }
       const config = useRuntimeConfig();
       const mp = new MercadoPago(config.public.meli, { locale: "es-CL" });
       const bricksBuilder = mp.bricks();
+      let monto = this.services[sessionStorage.getItem("type")] || 15000;
+
       const renderPaymentBrick = async (bricksBuilder) => {
         const settings = {
           initialization: {
-            amount: 15000,
+            amount: monto,
             // preferenceId: "<PREFERENCE_ID>",
-            payer: {
-              firstName: "",
-              lastName: "",
-              email: "",
-            },
+            // payer: {
+            //   firstName: "",
+            //   lastName: "",
+            //   email: "",
+            // },
           },
           customization: {
             visual: {
@@ -216,12 +254,13 @@ export default {
               },
             },
             paymentMethods: {
-              creditCard: "visa",
-              debitCard: "visa",
+              creditCard: "all",
+              debitCard: "all",
               ticket: "all",
               bankTransfer: "all",
               atm: "all",
               maxInstallments: 1,
+              mercadoPago: "all",
             },
           },
           callbacks: {
@@ -247,10 +286,10 @@ export default {
                 })
                   .then((response) => response.json())
                   .then((res) => {
+                    if (res.status == "approved") {
+                      sessionStorage.setItem("isPayed", true);
+                    }
                     paymentResponse = res;
-                    // if (paymentResponse.status == "approved") {
-                    //   sessionStorage.setItem("purchased", true);
-                    // }
                     this.renderStatusScreenBrick(bricksBuilder, paymentResponse);
                   });
                 // renderStatusScreenBrick(bricksBuilder);
@@ -290,8 +329,12 @@ export default {
       );
       setTimeout(() => {
         document.getElementById("statusScreenBrick_container").style.display = "none";
-        // Calendly.initPopupWidget({ url: "https://calendly.com/milasvet-2024/30min" });
+        this.isPayed = true;
       }, 8000);
+    },
+    setup(type) {
+      sessionStorage.setItem("type", type);
+      this.totalAmount = this.services[type];
     },
   },
 };

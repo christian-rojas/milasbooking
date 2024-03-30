@@ -11,7 +11,7 @@
         <li>Comodidad y accesibilidad.</li>
         <li>Ahorro de tiempo y dinero en traslados.</li>
         <li>Atención oportuna y personalizada.</li>
-        <li>Seguimiento continuo de tu salud.</li>
+        <li>Seguimiento continuo de la salud de tu mascota.</li>
       </ul>
     </div>
   </div>

@@ -3,16 +3,12 @@
     <div class="row">
       <div class="col"></div>
       <div class="col-9">
-        <p class="text-muted">¿Tienes dudas?</p>
+        <!-- <p class="text-muted">¿Tienes dudas?</p> -->
         <h3 class="text-center">Contáctanos</h3>
         <ul class="list-unstyled custom-list">
           <li>
             <font-awesome-icon :icon="['fas', 'envelope']" style="font-size: 35px; color: #c71610" />
-            <p>milasvet-2024@gmail.com</p>
-          </li>
-          <li>
-            <font-awesome-icon :icon="['fab', 'whatsapp']" style="font-size: 35px; color: #25d366" />
-            <p>+569-81831013</p>
+            <p>milasvet.2024@gmail.com</p>
           </li>
           <li>
             <font-awesome-icon :icon="['fab', 'facebook']" style="font-size: 35px; color: #4267b2" />
