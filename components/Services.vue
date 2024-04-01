@@ -232,7 +232,8 @@ export default {
         this.isPayed = true;
       }
       const config = useRuntimeConfig();
-      const mp = new MercadoPago(config.public.meli, { locale: "es-CL" });
+      const pk = "APP_USR-2477016f-7b97-4fad-aa38-407bcf8c1849";
+      const mp = new MercadoPago(pk, { locale: "es-CL" });
       const bricksBuilder = mp.bricks();
       let monto = this.services[sessionStorage.getItem("type")] || 15000;
 
