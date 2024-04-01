@@ -1,12 +1,6 @@
 <template>
   <div class="container mb-5" id="services">
     <h5 class="text-center">Selecciona el tipo de servicio que deseas agendar</h5>
-    <p class="text-muted d-flex justify-content-start">
-      Se solicitará completar una ficha con los antecedentes de su mascotas
-    </p>
-    <p class="text-muted d-flex justify-content-start">
-      Recuerde que es un servicio de telemedicina por lo tanto que no se realizaran vacunas ni antiparsitarios
-    </p>
     <div class="row">
       <div class="col-md-12">
         <ul class="nav nav-pills flex-column p-2 d-block m-auto" id="pills-tab" role="tablist">
@@ -168,6 +162,12 @@
         </div>
       </div>
     </div>
+    <p class="text-muted d-flex justify-content-start">
+      Se solicitará completar una ficha con los antecedentes de su mascotas
+    </p>
+    <p class="text-muted d-flex justify-content-start">
+      Recuerde que es un servicio de telemedicina por lo tanto que no se realizaran vacunas ni antiparsitarios
+    </p>
 
     <!-- Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

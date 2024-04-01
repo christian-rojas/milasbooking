@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
     <div class="container">
       <a class="navbar-brand" href="#" style="color: white">MilasVet</a>
-      <img src="./../assets/milas_logo.png" width="45px" alt="" />
+      <img src="./../assets/milas_logo.png" class="rounded" width="45px" alt="" />
       <button
         class="navbar-toggler"
         type="button"
