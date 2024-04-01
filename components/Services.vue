@@ -289,6 +289,7 @@ export default {
                   .then((res) => {
                     if (res.status == "approved") {
                       sessionStorage.setItem("isPayed", true);
+                      this.isPayed = true;
                     }
                     paymentResponse = res;
                     this.renderStatusScreenBrick(bricksBuilder, paymentResponse);
@@ -330,7 +331,6 @@ export default {
       );
       setTimeout(() => {
         document.getElementById("statusScreenBrick_container").style.display = "none";
-        this.isPayed = true;
       }, 8000);
     },
     setup(type) {
