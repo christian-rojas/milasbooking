@@ -1,15 +1,12 @@
 <template>
   <div class="container" id="footer">
     <div class="row">
-      <div class="col"></div>
+      <div class="col-3"></div>
       <div class="col-9">
         <!-- <p class="text-muted">¿Tienes dudas?</p> -->
-        <h3 class="text-center">Contáctanos</h3>
+
+        <h3 class="pb-3 pt-3">Contáctanos</h3>
         <ul class="list-unstyled custom-list">
-          <li>
-            <font-awesome-icon :icon="['fas', 'envelope']" style="font-size: 35px; color: #c71610" />
-            <p>milasvet.2024@gmail.com</p>
-          </li>
           <li>
             <font-awesome-icon :icon="['fab', 'facebook']" style="font-size: 35px; color: #4267b2" />
             <p>/milasvet</p>

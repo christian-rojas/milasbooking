@@ -1,6 +1,6 @@
 <template>
   <div class="container mb-5" id="services">
-    <h5 class="text-center">Selecciona el tipo de servicio que deseas agendar</h5>
+    <h5 class="text-center" style="color: #966725">Selecciona el tipo de servicio que deseas agendar</h5>
     <div class="row">
       <div class="col-md-12">
         <ul class="nav nav-pills flex-column p-2 d-block m-auto" id="pills-tab" role="tablist">
@@ -130,11 +130,11 @@
               style="font-size: 35px; margin-left: 15px; color: #d44a4a; display: block; margin: auto; padding: 20px"
             />
             <p>
-              En esta consulta se necesitara fotos de la lesiones y se abarcara el tratamiento adecuado para su
-              cicatrizacion optima en la cual se entregara asesoria por ejemplo: manejo quirurjico primario y/o manejos
-              con apositos adecuados dependiendo del tipo de herida y su condicion. Eventualmente se gestionara en caso
-              de ser necesario derivaciones directo a pabellon y/o personas que puedan ir a realizar los vendajes en
-              casa o entregar asesoria para que ustedes como tutores puedan realizar los cambios.
+              En esta consulta se necesitará fotos de la lesiones y se abarcará el tratamiento adecuado para su
+              cicatrización óptima en la cual se entregará asesoría, por ejemplo: manejo quirúrjico primario y/o manejos
+              con apositos adecuados dependiendo del tipo de herida y su condición. Eventualmente se gestionará en caso
+              de ser necesario derivaciones directo a pabellón y/o personas que puedan ir a realizar los vendajes en
+              casa o también entregar asesoria para que ustedes como tutores puedan realizar los cambios.
             </p>
             <div class="text-center">
               <button
@@ -166,7 +166,7 @@
       Se solicitará completar una ficha con los antecedentes de su mascotas
     </p>
     <p class="text-muted d-flex justify-content-start">
-      Recuerde que es un servicio de telemedicina por lo tanto que no se realizaran vacunas ni antiparsitarios
+      Recuerde que es un servicio de telemedicina por lo tanto no se realizaran vacunas ni antiparsitarios
     </p>
 
     <!-- Modal -->

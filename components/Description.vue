@@ -1,7 +1,7 @@
 <template>
   <div class="container p-3">
     <div class="jumbotron">
-      <h1 class="display-4 text-center">¿cómo funciona?</h1>
+      <h1 class="display-4 text-center" style="color: #966725">¿cómo funciona?</h1>
       <p class="lead text-muted">
         De acuerdo al motivo de consulta se evaluará si el servicio es apto para telemedicina. Si no es el caso, se
         devolverá el 100% del dinero en un plazo de 48 horas
@@ -43,14 +43,12 @@
                   <li>La complejidad del problema o condición médica.</li>
                   <li>La necesidad de un examen físico presencial.</li>
                   <li>La disponibilidad de tecnología adecuada por parte del paciente</li>
-                  <li>La capacidad del paciente para comprender y utilizar la plataforma de telemedicina.</li>
                 </ul>
                 <li>¿En qué casos la telemedicina NO es recomendable?</li>
                 <ul>
                   <li>Urgencias o emergencias médicas.</li>
                   <li>Condiciones que requieren un examen físico completo.</li>
                   <li>Procedimientos médicos que no pueden realizarse a distancia.</li>
-                  <li>Pacientes con dificultades para comprender o utilizar la plataforma de telemedicina</li>
                 </ul>
               </ul>
             </div>

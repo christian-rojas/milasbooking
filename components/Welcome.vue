@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container p-5">
     <div class="card p-3 mt-5 bg-body-tertiary">
-      <h3 class="text-center">Bienvenido a milasvet</h3>
+      <h3 class="text-center" style="color: #966725">Bienvenido a milasvet</h3>
       <p>
         Sabemos lo importante que son tus mascotas para ti, por eso nos comprometemos a proporcionarles el cuidado y la
         atención que se merecen en todo momento. ¡Estamos aquí para ayudarte!
       </p>
-      <h4 class="text-center">Beneficios de la telemedicina</h4>
-      <ul class="list-unstyled justify-content-start">
+    </div>
+    <div class="card p-3 mt-5 bg-body-tertiary">
+      <h4 class="text-center" style="color: #966725">Beneficios de la telemedicina</h4>
+      <ul class="list-unstyled justify-content-start text-center">
         <li>Comodidad y accesibilidad.</li>
         <li>Ahorro de tiempo y dinero en traslados.</li>
         <li>Atención oportuna y personalizada.</li>

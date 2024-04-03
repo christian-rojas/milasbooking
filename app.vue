@@ -7,7 +7,7 @@
       <img src="./assets/banner_inicio.jpeg" class="card-img-top" alt="Your Image" />
       <div class="card-body">
         <div class="d-flex justify-content-center">
-          <h2>Dra. Camila Rojas</h2>
+          <h2 style="color: #966725">Dra. Camila Rojas</h2>
           <!-- <button
           class="btn btn-primary mb-5"
           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/milasvet-2024/30min'});return false;"
